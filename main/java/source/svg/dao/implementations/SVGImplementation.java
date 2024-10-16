@@ -6,11 +6,13 @@ package source.svg.dao.implementations;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import source.svg.dao.interfaces.SVGInterface;
-import source.svg.dao.pojo.SVGFile;
+import source.svg.dao.pojo.SVGObject;
+import source.svg.dao.pojo.dependencies.Line;
 import source.svg.dao.pojo.dependencies.Rect;
 import source.svg.dao.pojo.dependencies.SVGStatement;
 import source.svg.data.config.SVGConfiguration;
@@ -22,13 +24,13 @@ import source.svg.data.config.SVGConfiguration;
 public class SVGImplementation implements SVGInterface{
 
     @Override
-    public SVGFile getSVGFile() {
-        SVGFile svg = null;
+    public SVGObject getSVGFile() {
+        SVGObject svg = null;
         File f = new File(SVGConfiguration.SVG_PATH);
         try(Scanner sc = new Scanner(f)){
             String lane = sc.nextLine();
             if (lane.equals("<svg xmlns=\"http://www.w3.org/2000/svg\">")) {
-                svg = new SVGFile();
+                svg = new SVGObject();
                 do{
                     lane = sc.nextLine();
                     if (!lane.equals("</svg>")) {
@@ -44,17 +46,26 @@ public class SVGImplementation implements SVGInterface{
         return svg;
     }
     
-    private void addStatement(SVGFile svg, String lane){
+    private void addStatement(SVGObject svg, String lane){
         SVGStatement statement = null;
         if (lane.contains("<rect")) {
             statement = Rect.textToStatement(lane);
+        }
+        if (lane.contains("<line")) {
+            statement = Line.textToStatement(lane);
         }
         svg.addStatement(statement);
     }
 
     @Override
-    public boolean setSVGFile(SVGFile svgFile) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean setSVGFile(SVGObject svg) {
+        File f = new File(SVGConfiguration.SVG_PATH);
+        try(FileWriter fw = new FileWriter(f,false)){
+            fw.write(svg.toSVG());
+            return true;
+        }catch(Exception ex){
+            return false;
+        }
     }
     
 }

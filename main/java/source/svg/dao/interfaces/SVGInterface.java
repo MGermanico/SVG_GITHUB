@@ -4,14 +4,14 @@
  */
 package source.svg.dao.interfaces;
 
-import source.svg.dao.pojo.SVGFile;
+import source.svg.dao.pojo.SVGObject;
 
 /**
  *
  * @author migue
  */
 public interface SVGInterface {
-    public SVGFile getSVGFile();
+    public SVGObject getSVGFile();
     
-    public boolean setSVGFile(SVGFile svgFile);
+    public boolean setSVGFile(SVGObject svgFile);
 }

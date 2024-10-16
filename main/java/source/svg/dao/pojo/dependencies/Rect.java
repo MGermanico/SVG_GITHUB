@@ -4,6 +4,9 @@
  */
 package source.svg.dao.pojo.dependencies;
 
+import java.awt.Color;
+import source.svg.utils.SVGUtils;
+
 /**
  *
  * @author migue
@@ -15,7 +18,7 @@ public class Rect extends SVGStatement{
     double y;//	The y-position for the top-left corner of the rectangle
     double rx;//	The x radius of the corners of the rectangle (used to round the corners). Default is 0
     double ry;//	The y radius of the corners of the rectangle (used to round the corners). Default is 0
-    String color = null;//     fill color
+    Color color = null;//     fill color
     
     public Rect(double width, double height, double x, double y, double rx, double ry) {
         this.width = width;
@@ -29,7 +32,7 @@ public class Rect extends SVGStatement{
     public Rect(double width, double height, double x, double y) {
         this(width, height, x, y, 0, 0);
     }
-    public void fill(String color){
+    public void fill(Color color){
         this.color = color;
     }
     @Override
@@ -41,7 +44,7 @@ public class Rect extends SVGStatement{
                 + "rx=\"" + this.rx + "\" "
                 + "ry=\"" + this.ry + "\" ";
         if (this.color != null) {
-            ret += "fill=\"" + this.color + "\" ";
+            ret += "fill=\"" + SVGUtils.javaColorToSVGRGB(this.color) + "\" ";
         }
         ret += "/>";
         return ret;
@@ -84,7 +87,7 @@ public class Rect extends SVGStatement{
                     r.ry = Double.parseDouble(val);
                 }
                 if (var.equals("fill")) {
-                    r.color = val;
+                    r.color = SVGUtils.svgRGBToJavaColor(val);
                 }
             }
         }

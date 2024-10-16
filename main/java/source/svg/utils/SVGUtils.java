@@ -4,6 +4,7 @@
  */
 package source.svg.utils;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,5 +45,19 @@ public class SVGUtils {
             e.printStackTrace();
             return null;
         }
+    }
+    public static String javaColorToSVGRGB(Color color){
+        return "rgb(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ")";
+    }
+    public static Color svgRGBToJavaColor(String color){
+        color = color.replaceAll(" ", "");
+        if (!color.matches("rgb\\(\\d{1,3},\\d{1,3},\\d{1,3}\\)")) {
+            return null;
+        }
+        color = color.replaceAll("rgb\\(", "").replaceAll("\\)", "");
+        String colorParts[] = color.split(",");
+        System.out.println(colorParts[0] + "," + colorParts[1] + "," + colorParts[2]);
+        Color retColor = new Color(Integer.parseInt(colorParts[0]), Integer.parseInt(colorParts[1]), Integer.parseInt(colorParts[2]));
+        return retColor;
     }
 }
