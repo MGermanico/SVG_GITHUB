@@ -4,13 +4,15 @@
  */
 package source.svg;
 
+import java.util.ArrayList;
 import java.util.List;
-import source.svg.complexforms.Grid;
+import source.svg.complexstatements.Grid;
+import source.svg.complexstatements.SVGComplexStatement;
 import source.svg.dao.implementations.SVGImplementation;
 import source.svg.dao.pojo.SVGObject;
-import source.svg.dao.pojo.forms.Line;
-import source.svg.dao.pojo.forms.Rect;
-import source.svg.dao.pojo.forms.SVGStatement;
+import source.svg.dao.pojo.statements.Line;
+import source.svg.dao.pojo.statements.Rect;
+import source.svg.dao.pojo.statements.SVGStatement;
 
 /**
  *
@@ -21,12 +23,16 @@ public class SVGManager {
     private static SVGImplementation svgImpl = new SVGImplementation();
     private SVGObject svg;
     
-    public SVGManager() {
-        svg = svgImpl.getSVGFile();
+    public SVGManager(boolean rewrite) {
+        if (!rewrite) {
+            svg = svgImpl.getSVGFile();
+        }else{
+            svg = new SVGObject();
+        }
     }
 
     public void clear(){
-        svg.getStatements().clear();
+        svg = new SVGObject();
         svgImpl.setSVGFile(svg);
     }
     
@@ -48,8 +54,22 @@ public class SVGManager {
     }
     
     public void addGrid(Grid grid){
-        System.out.println("si");
-        svg.addStatements(grid.getLines());
+        svg.addStatement(grid);
         svgImpl.setSVGFile(svg);
+    }
+    
+    public void printStatements(){
+        System.out.println("\t--\tNORMAL STATEMENTS:");
+        ArrayList<SVGStatement> statements = svg.getStatements();
+        for (SVGStatement statement : statements) {
+            System.out.println(statement.getStatement());
+        }
+        
+        System.out.println("\t--\tCOMPLEX STATEMENTS:");
+        ArrayList<SVGComplexStatement> complexStatements = svg.getComplexStatements();
+        for (SVGComplexStatement complexStatement : complexStatements) {
+            System.out.println(complexStatement.getType());
+        }
+        
     }
 }

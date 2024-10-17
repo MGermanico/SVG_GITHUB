@@ -5,7 +5,8 @@
 package source.svg.dao.pojo;
 
 import java.util.ArrayList;
-import source.svg.dao.pojo.forms.SVGStatement;
+import source.svg.complexstatements.SVGComplexStatement;
+import source.svg.dao.pojo.statements.SVGStatement;
 
 /**
  *
@@ -15,13 +16,26 @@ public class SVGObject {
     private static final String SVG_XMLNS_TAG = "<svg xmlns=\"http://www.w3.org/2000/svg\">";
 
     private ArrayList<SVGStatement> statements;
+    private ArrayList<SVGComplexStatement> complexStatements;
     
     public SVGObject() {  
         statements = new ArrayList<>();
+        complexStatements = new ArrayList<>();
     }
     
     
-
+    public ArrayList<SVGComplexStatement> getComplexStatements(){
+        return complexStatements;
+    }
+    public void addStatement(SVGComplexStatement complexStatement){
+        if (complexStatements != null) {
+            this.complexStatements.add(complexStatement);
+        }
+    }
+    public void setComplexStatements(ArrayList<SVGComplexStatement> complexStatements){
+        this.complexStatements = complexStatements;
+    }
+    
     public ArrayList<SVGStatement> getStatements() {
         return statements;
     }
@@ -41,6 +55,9 @@ public class SVGObject {
     public String toSVG(){
         String svgString;
         svgString = SVGObject.SVG_XMLNS_TAG + "\n";
+        for (SVGComplexStatement complexStatement : complexStatements) {
+            svgString += complexStatement.getStatement();
+        }
         for (SVGStatement statement : statements) {
             svgString += statement.getStatement() + "\n";
         }

@@ -5,7 +5,7 @@
 package source.svg.dao.pojo;
 
 import java.util.ArrayList;
-import source.svg.dao.pojo.forms.SVGStatement;
+import source.svg.dao.pojo.statements.SVGStatement;
 
 /**
  *

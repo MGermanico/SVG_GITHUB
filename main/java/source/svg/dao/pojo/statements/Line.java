@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package source.svg.dao.pojo.forms;
+package source.svg.dao.pojo.statements;
 
 import java.awt.Color;
 import source.svg.utils.SVGUtils;
@@ -22,6 +22,7 @@ public class Line extends SVGStatement{
     double strokeWidth;
     
     public Line(double x1, double y1, double x2, double y2, Color color, double strokeWidth) {
+        super("line");
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -69,7 +70,7 @@ public class Line extends SVGStatement{
         
         if (parts.length >= 2) {
             r = new Line(0,0,0,0);
-            System.out.println("-->" + text);
+//            System.out.println("-->" + text);
             for (String part : parts) {
                 part = part.replaceAll("\"", "");
                 partsOfEqual = part.split("=");
@@ -110,7 +111,7 @@ public class Line extends SVGStatement{
 
     @Override
     public String toString() {
-        return this.x1 + "," + this.y1 + " , " + this.x2 + "," + this.y2;
+        return this.getStatement();
     }
     
     public double getX1() {

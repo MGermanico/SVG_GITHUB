@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package source.svg.dao.pojo.forms;
+package source.svg.dao.pojo.statements;
 
 import java.awt.Color;
 import source.svg.utils.SVGUtils;
@@ -21,6 +21,7 @@ public class Rect extends SVGStatement{
     Color color = null;//     fill color
     
     public Rect(double width, double height, double x, double y, double rx, double ry) {
+        super("rect");
         this.width = width;
         this.height = height;
         this.x = x;

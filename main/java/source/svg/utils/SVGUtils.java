@@ -5,6 +5,7 @@
 package source.svg.utils;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -56,8 +57,15 @@ public class SVGUtils {
         }
         color = color.replaceAll("rgb\\(", "").replaceAll("\\)", "");
         String colorParts[] = color.split(",");
-        System.out.println(colorParts[0] + "," + colorParts[1] + "," + colorParts[2]);
+//        System.out.println(colorParts[0] + "," + colorParts[1] + "," + colorParts[2]);
         Color retColor = new Color(Integer.parseInt(colorParts[0]), Integer.parseInt(colorParts[1]), Integer.parseInt(colorParts[2]));
         return retColor;
     }
+    public static BufferedImage ImageToBufferedImage(Image image) {
+    int width = image.getWidth(null);
+    int height = image.getHeight(null);
+    BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+    bufferedImage.getGraphics().drawImage(image, 0, 0, null);
+    return bufferedImage;
+}
 }
