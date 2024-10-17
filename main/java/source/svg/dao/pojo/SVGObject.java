@@ -5,7 +5,7 @@
 package source.svg.dao.pojo;
 
 import java.util.ArrayList;
-import source.svg.dao.pojo.dependencies.SVGStatement;
+import source.svg.dao.pojo.forms.SVGStatement;
 
 /**
  *
@@ -33,7 +33,11 @@ public class SVGObject {
     public void setStatements(ArrayList<SVGStatement> statements) {
         this.statements = statements;
     }
-    
+    public void addStatements(ArrayList<SVGStatement> statements){
+        for (SVGStatement statement : statements) {
+            addStatement(statement);
+        }
+    }
     public String toSVG(){
         String svgString;
         svgString = SVGObject.SVG_XMLNS_TAG + "\n";

@@ -12,9 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import source.svg.dao.interfaces.SVGInterface;
 import source.svg.dao.pojo.SVGObject;
-import source.svg.dao.pojo.dependencies.Line;
-import source.svg.dao.pojo.dependencies.Rect;
-import source.svg.dao.pojo.dependencies.SVGStatement;
+import source.svg.dao.pojo.forms.Line;
+import source.svg.dao.pojo.forms.Rect;
+import source.svg.dao.pojo.forms.SVGStatement;
 import source.svg.data.config.SVGConfiguration;
 
 /**

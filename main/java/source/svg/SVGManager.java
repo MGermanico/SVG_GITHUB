@@ -5,11 +5,12 @@
 package source.svg;
 
 import java.util.List;
+import source.svg.complexforms.Grid;
 import source.svg.dao.implementations.SVGImplementation;
 import source.svg.dao.pojo.SVGObject;
-import source.svg.dao.pojo.dependencies.Line;
-import source.svg.dao.pojo.dependencies.Rect;
-import source.svg.dao.pojo.dependencies.SVGStatement;
+import source.svg.dao.pojo.forms.Line;
+import source.svg.dao.pojo.forms.Rect;
+import source.svg.dao.pojo.forms.SVGStatement;
 
 /**
  *
@@ -46,5 +47,9 @@ public class SVGManager {
         svgImpl.setSVGFile(svg);
     }
     
-    public void addGrid()
+    public void addGrid(Grid grid){
+        System.out.println("si");
+        svg.addStatements(grid.getLines());
+        svgImpl.setSVGFile(svg);
+    }
 }
