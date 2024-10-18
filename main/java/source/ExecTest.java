@@ -22,8 +22,11 @@ import source.svg.data.config.SVGConfiguration;
  */
 public class ExecTest {
     public static void main(String[] args) {
-        GraphicManager gm = new GraphicManager(10, 10, 900, 500);
-        gm.addLane(0, 0, 2, 2, Color.RED);
+        GraphicManager gm = new GraphicManager(10, 10, 400, 400);
+        gm.setxOffSet(-2);
+        gm.setyOffSet(-1);
+        gm.addLane(new Line(0, 0, 3, 3, Color.RED, 1));
+        gm.setXY(5, 5);
         ShowSVGImage mi = new ShowSVGImage(gm.getImageIcon());
     }
 }

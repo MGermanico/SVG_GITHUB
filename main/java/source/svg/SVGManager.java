@@ -109,4 +109,14 @@ public class SVGManager {
         }
         
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+    
+    
 }

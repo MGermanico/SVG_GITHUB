@@ -145,5 +145,13 @@ public class Line extends SVGStatement{
     public void setY2(double y2) {
         this.y2 = y2;
     }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public double getStrokeWidth() {
+        return strokeWidth;
+    }
     
 }
