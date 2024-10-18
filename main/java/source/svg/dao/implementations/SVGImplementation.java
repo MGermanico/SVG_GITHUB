@@ -81,7 +81,7 @@ public class SVGImplementation implements SVGInterface{
         if (lane.contains("<!--startOfGrid")) {
             cmplxStatement = Grid.textToComplexStatement(lane, sc);
         }
-        
+        svg.addStatement(cmplxStatement);
     }
     
 }

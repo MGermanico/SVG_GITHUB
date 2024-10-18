@@ -15,6 +15,9 @@ import source.svg.dao.pojo.statements.SVGStatement;
 public class SVGObject {
     private static final String SVG_XMLNS_TAG = "<svg xmlns=\"http://www.w3.org/2000/svg\">";
 
+    private double xScale = 1;
+    private double yScale = 1;
+    
     private ArrayList<SVGStatement> statements;
     private ArrayList<SVGComplexStatement> complexStatements;
     
@@ -55,13 +58,23 @@ public class SVGObject {
     public String toSVG(){
         String svgString;
         svgString = SVGObject.SVG_XMLNS_TAG + "\n";
+        svgString += "<g transform=\"scale(" + this.xScale + "," + this.yScale + ")\">" + "\n";
         for (SVGComplexStatement complexStatement : complexStatements) {
             svgString += complexStatement.getStatement();
         }
         for (SVGStatement statement : statements) {
             svgString += statement.getStatement() + "\n";
         }
+        svgString += "</g>" + "\n";
         svgString += "</svg>";
         return svgString;
     }
+
+    public void setXScale(double xScale) {
+        this.xScale = xScale;
+    }
+    public void setYScale(double yScale) {
+        this.yScale = yScale;
+    }
+    
 }

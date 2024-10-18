@@ -6,6 +6,7 @@ package source;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import source.graphic.GraphicManager;
 import source.svg.SVGManager;
 import source.svg.complexstatements.Grid;
 import source.svg.dao.implementations.SVGImplementation;
@@ -21,13 +22,8 @@ import source.svg.data.config.SVGConfiguration;
  */
 public class ExecTest {
     public static void main(String[] args) {
-        SVGManager manager = new SVGManager(true);
-//        manager.clear();
-        Grid grid = new Grid(0, 0, 400, 400, 100, 100, Color.BLUE, 1);
-        Grid grid2 = new Grid(0, 0, 400, 400, 10, 10, Color.RED, 1);
-        manager.addGrid(grid);
-        manager.addGrid(grid2);
-        manager.printStatements();
-        ShowSVGImage mi = new ShowSVGImage(SVGConfiguration.SVG_PATH, 400,400);
+        GraphicManager gm = new GraphicManager(10, 10, 900, 500);
+        gm.addLane(0, 0, 2, 2, Color.RED);
+        ShowSVGImage mi = new ShowSVGImage(gm.getImageIcon());
     }
 }
