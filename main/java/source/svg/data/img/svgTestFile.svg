@@ -22,6 +22,5 @@
 <!--endOfGrid-->
 <line x1="0.0" y1="0.0" x2="400.0" y2="0.0"  style="stroke:rgb(0,0,0);stroke-width:2.0" />
 <line x1="0.0" y1="0.0" x2="0.0" y2="400.0"  style="stroke:rgb(0,0,0);stroke-width:2.0" />
-<line x1="0.0" y1="0.0" x2="50.0" y2="250.0"  style="stroke:rgb(255,0,0);stroke-width:1.0" />
 </g>
 </svg>
