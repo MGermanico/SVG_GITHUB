@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package bbdd.dao.implementation;
+package source.bbdd.dao.implementation;
 
-import bbdd.dao.interfaces.RondaDAO;
-import bbdd.dao.pojo.Partida;
-import bbdd.dao.pojo.Ronda;
-import bbdd.dao.variables.MyDate;
-import bbdd.dao.variables.Nickname;
+import source.bbdd.dao.interfaces.RondaDAO;
+import source.bbdd.dao.pojo.Partida;
+import source.bbdd.dao.pojo.Ronda;
+import source.bbdd.dao.variables.MyDate;
+import source.bbdd.dao.variables.Nickname;
 import java.io.IOException;
 import java.util.ArrayList;
-import utils.Config;
+import source.utils.Config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

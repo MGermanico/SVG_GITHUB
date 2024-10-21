@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package bbdd.dao.pojo;
+package source.bbdd.dao.pojo;
 
-import bbdd.dao.variables.MyColor;
-import bbdd.dao.variables.Nickname;
+import source.bbdd.dao.variables.MyColor;
+import source.bbdd.dao.variables.Nickname;
 import exceptions.InvalidFormatException;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utils.StringUtils;
+import source.utils.StringUtils;
 
 /**
  *
@@ -23,9 +23,14 @@ public class Jugador {
     private int numeroPuntosTotales;
     private int NumeroPartidasJugadas;
 
-    public Jugador(Nickname nickname) {
+    public Jugador(Nickname nickname, Color color) {
         this.nickname = nickname;
+        this.setColor(color);
     }
+
+    public Jugador(Nickname nickname) {
+        this(nickname, Color.BLACK);
+    }    
     
     public Nickname getNickname() {
         return nickname;

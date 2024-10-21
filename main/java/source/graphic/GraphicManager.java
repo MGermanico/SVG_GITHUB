@@ -38,6 +38,11 @@ public class GraphicManager {
         setSize(width, height);
     }
     
+    public void clear(){
+        this.statements.clear();
+        update();
+    }
+    
     public void setSize(double width, double height){
         svgManager.setSize(width, height);
     }

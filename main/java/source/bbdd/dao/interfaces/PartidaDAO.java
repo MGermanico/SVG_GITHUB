@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package bbdd.dao.interfaces;
+package source.bbdd.dao.interfaces;
 
-import bbdd.dao.pojo.Partida;
-import bbdd.dao.variables.MyDate;
-import bbdd.dao.variables.Nickname;
+import source.bbdd.dao.pojo.Partida;
+import source.bbdd.dao.variables.MyDate;
+import source.bbdd.dao.variables.Nickname;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
