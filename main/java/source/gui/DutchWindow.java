@@ -4,10 +4,14 @@
  */
 package source.gui;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import source.bbdd.dao.pojo.Jugador;
 import source.dutch.DutchManager;
 
@@ -20,7 +24,8 @@ public class DutchWindow extends JPanel{
     private PrincipalFrame owner;
     ArrayList<Jugador> players;
     JPanel back;
-    JPanel leftSide;
+    Box leftSide;
+    Box rightSide;
     DutchManager dutchManager;
     
     public DutchWindow(PrincipalFrame owner, ArrayList<Jugador> players) {
@@ -36,8 +41,9 @@ public class DutchWindow extends JPanel{
     }
 
     private void initComponents() {
-        back = new JPanel(new GridLayout(1, 2));
-        leftSide = new JPanel(new );
+        back = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 15));
+        leftSide = Box.createVerticalBox();
+        rightSide = Box.createVerticalBox();
         
         dutchManager = new DutchManager(players, 15);
     }
@@ -46,6 +52,8 @@ public class DutchWindow extends JPanel{
         leftSide.add(new JLabel("PARTIDA"));
         leftSide.add(dutchManager.getGp());
         back.add(leftSide);
+        rightSide.add(new JLabel("aaaaa"));
+        back.add(rightSide);
         this.add(back);
     }
     
