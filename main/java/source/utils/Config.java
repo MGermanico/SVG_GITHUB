@@ -19,7 +19,7 @@ public class Config {
     private static String url;
     
     static{
-        File configurationFile = new File("./configuration.csv");
+        File configurationFile = new File("./Config.txt");
         try(Scanner scFile = new Scanner(configurationFile)){
             url = scFile.nextLine();
             driver = scFile.nextLine();

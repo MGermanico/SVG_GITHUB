@@ -14,6 +14,8 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import source.bbdd.dao.pojo.Jugador;
 import source.dutch.DutchManager;
+import source.gui.table.TableManager;
+import source.gui.table.TablePanel;
 
 /**
  *
@@ -22,12 +24,13 @@ import source.dutch.DutchManager;
 public class DutchWindow extends JPanel{
 
     private PrincipalFrame owner;
-    ArrayList<Jugador> players;
+    public ArrayList<Jugador> players;
     JPanel back;
     Box leftSide;
     Box rightSide;
-    DutchManager dutchManager;
-    
+    public DutchManager dutchManager;
+    public TableManager tableManager;
+            
     public DutchWindow(PrincipalFrame owner, ArrayList<Jugador> players) {
         this.owner = owner;
         
@@ -46,15 +49,20 @@ public class DutchWindow extends JPanel{
         rightSide = Box.createVerticalBox();
         
         dutchManager = new DutchManager(players, 15);
+        tableManager = new TableManager(15, this);
     }
 
     private void initBack() {
         leftSide.add(new JLabel("PARTIDA"));
         leftSide.add(dutchManager.getGp());
+        leftSide.add(tableManager.getTP());
         back.add(leftSide);
         rightSide.add(new JLabel("aaaaa"));
         back.add(rightSide);
         this.add(back);
     }
     
+    public void updateComponents(){
+        System.out.println("actualizar");
+    }
 }
