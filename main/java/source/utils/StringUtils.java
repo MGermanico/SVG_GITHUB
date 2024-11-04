@@ -41,4 +41,17 @@ public abstract class StringUtils {
         String part2 = str.substring(pos);
         return part1 + c + part2;
     }
+    
+    public static boolean onlyNumbers(String str){
+        if (str.isEmpty()) {
+            return false;
+        }
+        str.replaceAll(" ", "");
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

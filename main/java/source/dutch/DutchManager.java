@@ -31,4 +31,11 @@ public class DutchManager {
         return gp;
     }
     
+    public int getWidth(){
+        return this.gp.gm.getSvgManager().getWidth();
+    }
+    public int getHeight(){
+        return this.gp.gm.getSvgManager().getHeight();
+    }
+    
 }

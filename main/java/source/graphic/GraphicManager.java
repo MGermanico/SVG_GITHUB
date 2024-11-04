@@ -133,5 +133,9 @@ public class GraphicManager {
     public ImageIcon getImageIcon(){
         return svgManager.getImageIcon();
     }
+
+    public SVGManager getSvgManager() {
+        return svgManager;
+    }
     
 }

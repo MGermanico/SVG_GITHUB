@@ -4,10 +4,16 @@
  */
 package source.gui;
 
+import exceptions.InvalidFormatException;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import source.bbdd.dao.pojo.Jugador;
+import source.bbdd.dao.variables.Nickname;
 import source.dutch.DutchManager;
 import source.gui.optionsWindow.GetPlayers;
 
@@ -37,6 +43,16 @@ public class PrincipalFrame extends JFrame implements Runnable{
     private void initComponents() {
         this.setSize(600, 600);
         setUp(MENU_SETUP);
+        
+        ArrayList<Jugador> players = new ArrayList<>();
+        try {
+            players.add(new Jugador(new Nickname("aaaa"), Color.yellow));
+            players.add(new Jugador(new Nickname("bbb"), Color.RED));
+            players.add(new Jugador(new Nickname("ccc"), Color.BLUE));
+        } catch (InvalidFormatException ex) {
+            Logger.getLogger(PrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setUp(STARTGAME_SETUP, players);
     }
 
     public void setUp(int setupType, ArrayList<Jugador> players) {
@@ -63,5 +79,11 @@ public class PrincipalFrame extends JFrame implements Runnable{
     public void setUp(int setupType) {
         setUp(setupType, null);
     }
-    
+    public void update(){
+        int width = this.getWidth();
+        int height = this.getHeight();
+        this.pack();
+        this.setSize(width, height);
+        this.setPreferredSize(new Dimension(width, height));
+    }
 }

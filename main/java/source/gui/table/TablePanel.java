@@ -8,45 +8,104 @@ import source.bbdd.dao.pojo.Jugador;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import source.gui.DutchWindow;
-import source.utils.Config;
-import source.utils.Utils;
 
 /**
  *
  * @author migue
  */
-public class TablePanel extends JPanel{
+public class TablePanel extends JPanel {
+
     TableManager parent;
-    
-    JScrollPane scrollPane;
+
     Box tableBox = Box.createHorizontalBox();
+
+    ButtonGrid grid;//TODO - MOVER TODO EL GRID A LA CLASE BUTTONGRID
+    JPanel namesGrid;
     Map<Jugador, ArrayList<TableCell>> gameTable;
-    
-    public TablePanel(int nGames, TableManager parent){
-        this.setSize(400, 400);
+    JButton addButton;
+    int nGames;
+
+    public TablePanel(int nGames, TableManager parent) {
+        this.setSize(parent.parent.dutchManager.getWidth(), 100);
+        this.nGames = nGames;
         this.parent = parent;
         this.setBorder(BorderFactory.createLineBorder(Color.RED));
-        gameTable = new HashMap<Jugador, ArrayList<TableCell>>();
+        initGameTable();
+        grid = new ButtonGrid(this);
+        
+        initAddButton();
         initPanel();
+        
+        grid.addColumn();
+    }
+
+    private void initGameTable() {
+        gameTable = new HashMap<Jugador, ArrayList<TableCell>>();
+        ArrayList<TableCell> actualIndivGame;
+        for (Jugador player : parent.parent.players) {
+            actualIndivGame = new ArrayList<>();
+            for (int i = 1; i <= nGames; i++) {
+                actualIndivGame.add(new TableCell(i, -66));
+            }
+            gameTable.put(player, actualIndivGame);
+        }
     }
 
     private void initPanel() {
-        tableBox.add(new JLabel("aaa"));
+        namesGrid = new JPanel(new GridLayout(gameTable.size(), 1));
+        initGrids();
+        tableBox.add(namesGrid);
+        tableBox.add(grid);
+        tableBox.add(addButton);
         this.add(tableBox);
     }
+
+    private void initGrids() {
+        for (Jugador jugador : gameTable.keySet()) {
+            namesGrid.add(new JLabel(jugador.getName()));
+            grid.initGrid(jugador);
+
+        }
+    }
+
+    private void updateGrid() {
+        grid.updateGrid();
+    }
+
+    private void initAddButton() {
+        addButton = new JButton("(+)");
+        addButton.setBackground(Color.GREEN);
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                Dimension d = new Dimension(300, 50*gameTable.size());
+//                grid.setSize(d);
+//                grid.setMaximumSize(d);
+//                grid.setMinimumSize(d);
+//                grid.setPreferredSize(d);
+                grid.addColumn();
+                
+//                parent.parent.getOwner().repaint();
+//                parent.parent.getOwner().revalidate();
+//                parent.parent.getOwner().pack();
+            }
+        });
+    }
+
+    public int getnGames() {
+        return nGames;
+    }
+    
+    
 }

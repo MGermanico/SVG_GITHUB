@@ -65,4 +65,10 @@ public class DutchWindow extends JPanel{
     public void updateComponents(){
         System.out.println("actualizar");
     }
+
+    public PrincipalFrame getOwner() {
+        return owner;
+    }
+    
+    
 }
