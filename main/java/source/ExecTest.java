@@ -57,7 +57,7 @@ public class ExecTest extends JFrame implements Runnable{
         
         DutchManager dm = new DutchManager(jugadores, 15);
         
-        this.add(dm.getGp());
+        this.add(dm.getGP());
         
         
         dm.putPoints(j, 1, 3);

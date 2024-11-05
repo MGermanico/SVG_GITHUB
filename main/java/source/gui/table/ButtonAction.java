@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import source.gui.DutchWindow;
 import source.utils.StringUtils;
 
 /**
@@ -18,10 +19,12 @@ public class ButtonAction implements ActionListener {
 
     JButton actualButton;
     TableCell tableCell;
+    DutchWindow dw;
     
-    public ButtonAction(TableCell tableCell, JButton actualButton) {
+    public ButtonAction(DutchWindow dw, TableCell tableCell, JButton actualButton) {
         this.actualButton = actualButton;
         this.tableCell = tableCell;
+        this.dw = dw;
     }
     
     @Override
@@ -30,6 +33,8 @@ public class ButtonAction implements ActionListener {
         if (StringUtils.onlyNumbers(res)) {
             actualButton.setText(res);
             tableCell.value = Integer.parseInt(res);
+            dw.updateGP();
+//            dw.updateGP();
         }
     }
 

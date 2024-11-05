@@ -71,7 +71,7 @@ public class ButtonGrid extends JPanel {
                 }
                 actualButton = new JButton(buttonText);
                 actualButton.setBackground(Color.WHITE);
-                action = new ButtonAction(tableCell, actualButton);
+                action = new ButtonAction(this.owner.parent.parent, tableCell, actualButton);
                 actualButton.addActionListener(action);
                 grid.add(actualButton);
             }
@@ -91,6 +91,10 @@ public class ButtonGrid extends JPanel {
         if (this.nActualGames < owner.getnGames()) {
             nActualGames++;
         }
+    }
+
+    public int getnActualGames() {
+        return nActualGames;
     }
     
     

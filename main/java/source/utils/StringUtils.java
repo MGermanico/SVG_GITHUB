@@ -49,7 +49,11 @@ public abstract class StringUtils {
         str.replaceAll(" ", "");
         for (int i = 0; i < str.length(); i++) {
             if (!Character.isDigit(str.charAt(i))) {
-                return false;
+                if (str.charAt(i) != '-') {
+                    return false;
+                }else{
+                    if(i >= str.length() - 1) return false;
+                }
             }
         }
         return true;

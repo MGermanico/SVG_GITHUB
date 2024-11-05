@@ -31,17 +31,23 @@ public class GraphicPanel extends JPanel{
         update();
     }
     
-    
+    public void setXY(double x, double y){
+        gm.setXY(x, y);
+        update();
+    }
     
     public void addPoints(int beforePoints, int points, Jugador jugador, int n){
 //        gm.addLane(new Line(n-1, beforePoints, n, points, jugador.getColor(), 1));
-        Line line = new Line(n-1, beforePoints, n, points, Color.red, 1);
+        Line line = new Line(n-1, beforePoints, n, points, jugador.getColor(), 2);
         HashMap<Integer, Line> jugadorLines = lines.get(jugador.getName());
         if (jugadorLines == null) {
             jugadorLines = new HashMap<>();
         }
         jugadorLines.put(n, line);
         lines.put(jugador.getName(), jugadorLines);
+//        System.out.println("atascao");
+        checklineIsCompleted();
+//        System.out.println("no");
         update();
     }
     
@@ -51,7 +57,7 @@ public class GraphicPanel extends JPanel{
         HashMap<Integer, Line> partidas = lines.get(name);
 //        System.out.println(lines);
 //        System.out.println(name);
-        System.out.println("---REFRESH---");
+//        System.out.println("---REFRESH---");
         double difference;
         for (int i = n+1; i <= partidas.size(); i++) {
             actualLine = partidas.get(i);
@@ -63,31 +69,89 @@ public class GraphicPanel extends JPanel{
                         actualLine.getY1() + difference,
                         actualLine.getX2(),
                         actualLine.getY2() + difference,
-                        new Color(3, 3, 3),
-                        1
+                        jugador.getColor(),
+                        2
                 );
-                System.out.println(actualLine);
+//                System.out.println(actualLine);
                 gm.addLane(lines.get(name).get(i));
                 partidas.put(i, actualLine);
             }
         }
         lines.put(name, partidas);
-        System.out.println("--/REFRESH---");
+//        System.out.println("--/REFRESH---");
         update();
+    }
+    
+    public void checklineIsCompleted(){
+        int realN;
+        boolean changed = false;
+        Line beforeLine = null;
+        double ptsFill;
+        Color colorFill;
+//        System.out.println("ENTRADO");
+        for (String name : lines.keySet()) {
+            realN = 1;
+            for (int n : lines.get(name).keySet()) {
+//                System.out.println(n + " ?= " + realN);
+                if (n != realN) {
+                    beforeLine = lines.get(name).get(realN-1);
+                    if (beforeLine == null) {
+                        ptsFill = 0;
+                        colorFill = lines.get(name).get(n).getColor();
+                    }else{
+                        ptsFill = beforeLine.getY2();
+                        colorFill = beforeLine.getColor();
+                    }
+                    Line line = new Line(realN-1, ptsFill, realN, ptsFill, colorFill, 2);
+                    lines.get(name).put(realN, line);
+                    changed = true;
+                    realN = n;
+                }
+                realN++;
+            }
+        }
+        if (changed) {
+            checklineIsCompleted();
+        }
     }
     
     public void update(){
         gm.clear();
-        System.out.println("---UPDATE---");
+//        System.out.println("---UPDATE---");
         for (String string : lines.keySet()) {
             for (int i : lines.get(string).keySet()) {
-                System.out.println(lines.get(string).get(i));
+//                System.out.println(lines.get(string).get(i));
                 gm.addLane(lines.get(string).get(i));
             }
         }
-        System.out.println("--/UPDATE---");
+//        System.out.println("--/UPDATE---");
         this.removeAll();
         this.add(new JLabel(gm.getImageIcon()));
+    }
+
+    public HashMap<Integer, Integer> getPointsByName(String nickName){
+        
+        HashMap<Integer, Integer> list = new HashMap<>();
+//        System.out.println("ENTRADA NOMBRE : " + nickName);
+//        for (String string : lines.keySet()) {
+//            System.out.println("NOMBRE : " + string);
+//        }
+//        System.out.println("----/NOMBRES---");
+        HashMap<Integer, Line> actualList = lines.get(nickName);
+        if (actualList != null) {
+            Line actualLine;
+            for (Integer nRounds : actualList.keySet()) {
+                actualLine = actualList.get(nRounds);
+                list.put(nRounds, (int)(actualLine.getY2() - actualLine.getY1()));
+            }
+            return list;
+        }else{
+            return null;
+        }
+    }
+    
+    public GraphicManager getGm() {
+        return gm;
     }
     
 }

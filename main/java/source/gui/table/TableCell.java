@@ -23,6 +23,14 @@ public class TableCell {
     public String toString() {
         return value + " ";
     }
+
+    public int getValue() {
+        return value;
+    }
+
+    public int getnGame() {
+        return nGame;
+    }
     
     
 }

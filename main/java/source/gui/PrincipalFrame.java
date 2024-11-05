@@ -46,9 +46,9 @@ public class PrincipalFrame extends JFrame implements Runnable{
         
         ArrayList<Jugador> players = new ArrayList<>();
         try {
-            players.add(new Jugador(new Nickname("aaaa"), Color.yellow));
+            players.add(new Jugador(new Nickname("aaaa"), Color.BLUE));
             players.add(new Jugador(new Nickname("bbb"), Color.RED));
-            players.add(new Jugador(new Nickname("ccc"), Color.BLUE));
+            players.add(new Jugador(new Nickname("ccc"), Color.YELLOW));
         } catch (InvalidFormatException ex) {
             Logger.getLogger(PrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

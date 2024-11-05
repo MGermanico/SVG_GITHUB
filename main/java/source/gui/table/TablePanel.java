@@ -95,6 +95,7 @@ public class TablePanel extends JPanel {
 //                grid.setMinimumSize(d);
 //                grid.setPreferredSize(d);
                 grid.addColumn();
+                parent.parent.updateGP();
                 
 //                parent.parent.getOwner().repaint();
 //                parent.parent.getOwner().revalidate();
@@ -105,6 +106,10 @@ public class TablePanel extends JPanel {
 
     public int getnGames() {
         return nGames;
+    }
+
+    public Map<Jugador, ArrayList<TableCell>> getGameTable() {
+        return gameTable;
     }
     
     
