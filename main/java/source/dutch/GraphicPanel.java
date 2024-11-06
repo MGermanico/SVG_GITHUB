@@ -36,6 +36,11 @@ public class GraphicPanel extends JPanel{
         update();
     }
     
+    void setSizeGP(int width, int height) {
+        gm.setSize(width, height);
+        update();
+    }
+    
     public void addPoints(int beforePoints, int points, Jugador jugador, int n){
 //        gm.addLane(new Line(n-1, beforePoints, n, points, jugador.getColor(), 1));
         Line line = new Line(n-1, beforePoints, n, points, jugador.getColor(), 2);
@@ -153,5 +158,10 @@ public class GraphicPanel extends JPanel{
     public GraphicManager getGm() {
         return gm;
     }
+
+    public int getMagOrder() {
+        return gm.getMagOrderGrid();
+    }
+
     
 }

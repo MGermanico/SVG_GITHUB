@@ -23,6 +23,7 @@ public class GraphicManager {
     ArrayList<SVGStatement> statements;
 
     private Grid xyGrid;
+    private Grid xySecondartGrid;
     
     private boolean graphicGrid = true;
     
@@ -31,6 +32,8 @@ public class GraphicManager {
     
     private double xOffSet = 0;
     private double yOffSet = 0;
+    
+    int magOrderGrid = 1;
     
     public GraphicManager(double x, double y, int width, int height) {
         svgManager = new SVGManager(true);
@@ -58,6 +61,13 @@ public class GraphicManager {
     }
     
     public void update(){
+        magOrderGrid = 1;
+        if (this.y > 25) {
+            magOrderGrid = 5;
+        }
+        if (this.y > 150) {
+            magOrderGrid = 10;
+        }
         svgManager.clear();
         
         for (SVGStatement statement : statements) {
@@ -72,9 +82,15 @@ public class GraphicManager {
         if (graphicGrid) {
             addLane(new Line(xOffSet, 0, x+xOffSet, 0, Color.BLACK, 2));
             addLane(new Line(0, yOffSet, 0, y+yOffSet, Color.BLACK, 2));
-
-            xyGrid = new Grid(0,0, svgManager.getWidth(), svgManager.getHeight(), (int)this.x, (int)this.y, Color.GRAY, 1);
+            
+            if ((this.y > 0 && this.y < 12.5) || (this.y > 25 && this.y < 80)) {
+                xySecondartGrid = new Grid(0,0, svgManager.getWidth(), svgManager.getHeight(), ((int)this.x)*2, ((int)(this.y/magOrderGrid))*2, Color.LIGHT_GRAY, 1);
+                svgManager.addGrid(xySecondartGrid);
+            }
+            
+            xyGrid = new Grid(0,0, svgManager.getWidth(), svgManager.getHeight(), (int)this.x, (int)(this.y/magOrderGrid), Color.GRAY, 1);
             svgManager.addGrid(xyGrid);
+            
         }
     }
     
@@ -106,14 +122,20 @@ public class GraphicManager {
         );
     }
     
-    public void addLane(Text text){
+    public void addText(Text text){
         statements.add(text);
         printText(text);
     }
     
     private void printText(Text text){
         svgManager.addText(new Text(
-
+                convertX(text.getX()),
+                convertY(text.getY()),
+                text.getContent(),
+                text.getxAlign(),
+                text.getyAlign(),
+                text.getFontSize(),
+                text.getColor()
             )
         );
 //        svgManager.addLine(new Line(
@@ -167,5 +189,9 @@ public class GraphicManager {
 
     public void setGraphicGrid(boolean graphicGrid) {
         this.graphicGrid = graphicGrid;
+    }
+
+    public int getMagOrderGrid() {
+        return magOrderGrid;
     }
 }

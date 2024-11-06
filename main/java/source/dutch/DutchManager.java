@@ -20,7 +20,11 @@ public class DutchManager {
     public DutchManager(ArrayList<Jugador> jugadores, int nGames) {
         this.gp = new GraphicPanel(400, 400);
         this.dutch = new Dutch(gp, jugadores, nGames);
-        this.pgp = new PointsGraphicPanel(getHeight(), this);
+        this.pgp = new PointsGraphicPanel(this);
+    }
+    
+    public int getMagOrder(){
+        return this.gp.getMagOrder();
     }
     
     public void putPoints(Jugador jugador, int n, int points){
@@ -37,6 +41,12 @@ public class DutchManager {
     
     public void setXY(double x, double y){
         gp.setXY(x, y);
+        pgp.update();
+    }
+    
+    public void setSize(int width, int height) {
+        gp.setSizeGP(width, height);
+        pgp.update();
     }
 
     public GraphicPanel getGP() {
@@ -47,7 +57,17 @@ public class DutchManager {
         return pgp;
     }
     
+    public double getY(){
+        return gp.gm.getY();
+    }
     
+    public double getX() {
+        return gp.gm.getX();
+    }
+    
+    public double getYOffset(){
+        return gp.gm.getyOffSet();
+    }
     
     public int getWidth(){
         return this.gp.gm.getSvgManager().getWidth();
@@ -55,5 +75,9 @@ public class DutchManager {
     public int getHeight(){
         return this.gp.gm.getSvgManager().getHeight();
     }
+
+    
+
+    
     
 }

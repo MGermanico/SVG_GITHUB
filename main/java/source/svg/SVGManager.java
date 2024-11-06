@@ -17,6 +17,7 @@ import source.svg.dao.pojo.SVGObject;
 import source.svg.dao.pojo.statements.Line;
 import source.svg.dao.pojo.statements.Rect;
 import source.svg.dao.pojo.statements.SVGStatement;
+import source.svg.dao.pojo.statements.Text;
 import source.svg.data.config.SVGConfiguration;
 import source.svg.utils.SVGUtils;
 
@@ -75,6 +76,11 @@ public class SVGManager {
     
     public void addLine(Line line){
         svg.addStatement(line);
+        svgImpl.setSVGFile(svg);
+    }
+    
+    public void addText(Text text){
+        svg.addStatement(text);
         svgImpl.setSVGFile(svg);
     }
     

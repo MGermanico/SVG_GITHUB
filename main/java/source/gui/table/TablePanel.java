@@ -37,7 +37,7 @@ public class TablePanel extends JPanel {
     int nGames;
 
     public TablePanel(int nGames, TableManager parent) {
-        this.setSize(parent.parent.dutchManager.getWidth(), 100);
+//        this.setSize(parent.parent.dutchManager.getWidth(), 100);
         this.nGames = nGames;
         this.parent = parent;
         this.setBorder(BorderFactory.createLineBorder(Color.RED));
@@ -46,6 +46,8 @@ public class TablePanel extends JPanel {
         
         initAddButton();
         initPanel();
+        
+        this.setPreferredSize(new Dimension(parent.parent.dutchManager.getWidth() + 150, 50*this.gameTable.size()+30));
         
         grid.addColumn();
     }
@@ -67,7 +69,10 @@ public class TablePanel extends JPanel {
         initGrids();
         tableBox.add(namesGrid);
         tableBox.add(grid);
-        tableBox.add(addButton);
+        addButton.setPreferredSize(new Dimension(30, 50*parent.parent.players.size()));
+        JPanel p = new JPanel();
+        p.add(addButton);
+        tableBox.add(p);
         this.add(tableBox);
     }
 
@@ -84,7 +89,7 @@ public class TablePanel extends JPanel {
     }
 
     private void initAddButton() {
-        addButton = new JButton("(+)");
+        addButton = new JButton();
         addButton.setBackground(Color.GREEN);
         addButton.addActionListener(new ActionListener() {
             @Override

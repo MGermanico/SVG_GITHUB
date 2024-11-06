@@ -4,6 +4,7 @@
  */
 package source.gui;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -12,9 +13,12 @@ import java.util.Map;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import source.bbdd.dao.pojo.Jugador;
+import source.dutch.ControlPanel;
+import source.dutch.ControlPanelManager;
 import source.dutch.DutchManager;
 import source.gui.table.TableCell;
 import source.gui.table.TableManager;
@@ -35,6 +39,7 @@ public class DutchWindow extends JPanel {
     Box rightSide;
     public DutchManager dutchManager;
     public TableManager tableManager;
+    public ControlPanelManager controlPanelManager;
 
     public DutchWindow(PrincipalFrame owner, ArrayList<Jugador> players) {
         this.owner = owner;
@@ -56,16 +61,26 @@ public class DutchWindow extends JPanel {
 
         dutchManager = new DutchManager(players, 15);
         tableManager = new TableManager(15, this);
+        controlPanelManager = new ControlPanelManager(this);
     }
 
     private void initBack() {
         leftSide.add(new JLabel("PARTIDA"));
+        graphicsSide.add(Box.createHorizontalGlue());
         graphicsSide.add(dutchManager.getPGP());
         graphicsSide.add(dutchManager.getGP());
+        graphicsSide.add(Box.createHorizontalGlue());
         leftSide.add(graphicsSide);
-        leftSide.add(tableManager.getTP());
+        
+        TablePanel tp = tableManager.getTP();
+        JScrollPane scrollPane = new JScrollPane(tp, 
+                                                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                                                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(tp.getPreferredSize().width, 150));
+        leftSide.add(scrollPane);
+        
         back.add(leftSide);
-        rightSide.add(new JLabel("aaaaa"));
+        rightSide.add(controlPanelManager.getCp());
         back.add(rightSide);
         this.add(back);
     }
@@ -111,9 +126,16 @@ public class DutchWindow extends JPanel {
         graphicsSide.add(dutchManager.getPGP());
         graphicsSide.add(dutchManager.getGP());
         leftSide.add(graphicsSide);
-        leftSide.add(tableManager.getTP());
+        
+        TablePanel tp = tableManager.getTP();
+        JScrollPane scrollPane = new JScrollPane(tp, 
+                                                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                                                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(tp.getPreferredSize().width, 150));
+        leftSide.add(scrollPane);
+        
         back.add(leftSide);
-        rightSide.add(new JLabel("aaaaa"));
+        rightSide.add(controlPanelManager.getCp());
         back.add(rightSide);
         this.revalidate();
         this.repaint();
@@ -122,5 +144,5 @@ public class DutchWindow extends JPanel {
     public PrincipalFrame getOwner() {
         return owner;
     }
-
+    
 }
