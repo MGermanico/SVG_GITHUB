@@ -20,7 +20,7 @@ public class DutchManager {
     public DutchManager(ArrayList<Jugador> jugadores, int nGames) {
         this.gp = new GraphicPanel(400, 400);
         this.dutch = new Dutch(gp, jugadores, nGames);
-        this.pgp = new PointsGraphicPanel(getHeight());
+        this.pgp = new PointsGraphicPanel(getHeight(), this);
     }
     
     public void putPoints(Jugador jugador, int n, int points){

@@ -60,7 +60,7 @@ public class DutchWindow extends JPanel {
 
     private void initBack() {
         leftSide.add(new JLabel("PARTIDA"));
-        graphicsSide.add(new JLabel("prueba"));
+        graphicsSide.add(dutchManager.getPGP());
         graphicsSide.add(dutchManager.getGP());
         leftSide.add(graphicsSide);
         leftSide.add(tableManager.getTP());
@@ -108,7 +108,7 @@ public class DutchWindow extends JPanel {
         graphicsSide.removeAll();
         rightSide.removeAll();
         leftSide.add(new JLabel("PARTIDA"));
-        graphicsSide.add(new JLabel("prueba"));
+        graphicsSide.add(dutchManager.getPGP());
         graphicsSide.add(dutchManager.getGP());
         leftSide.add(graphicsSide);
         leftSide.add(tableManager.getTP());

@@ -1,22 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <g transform="scale(1.0,1.0)">
-<!--startOfGrid="x:0.0;y:0.0;xLenght:400.0;yLenght:400.0;numberXSeparations:10;numberYSeparations:2;color:rgb(128,128,128);strokeWidth:1"-->
-<line x1="0.0" y1="200.0" x2="400.0" y2="200.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="40.0" y1="0.0" x2="40.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="80.0" y1="0.0" x2="80.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="120.0" y1="0.0" x2="120.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="160.0" y1="0.0" x2="160.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="200.0" y1="0.0" x2="200.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="240.0" y1="0.0" x2="240.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="280.0" y1="0.0" x2="280.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="320.0" y1="0.0" x2="320.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="360.0" y1="0.0" x2="360.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="0.0" y1="0.0" x2="400.0" y2="0.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="0.0" y1="400.0" x2="400.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="0.0" y1="0.0" x2="0.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<line x1="400.0" y1="0.0" x2="400.0" y2="400.0"  style="stroke:rgb(128,128,128);stroke-width:1.0" />
-<!--endOfGrid-->
-<line x1="0.0" y1="200.0" x2="400.0" y2="200.0"  style="stroke:rgb(0,0,0);stroke-width:2.0" />
-<line x1="0.0" y1="0.0" x2="0.0" y2="400.0"  style="stroke:rgb(0,0,0);stroke-width:2.0" />
+<line x1="0.0" y1="0.0" x2="50.0" y2="400.0"  style="stroke:rgb(0,0,0);stroke-width:2.0" />
 </g>
 </svg>

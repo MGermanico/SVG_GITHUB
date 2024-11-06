@@ -11,6 +11,7 @@ import source.svg.SVGManager;
 import source.svg.complexstatements.Grid;
 import source.svg.dao.pojo.statements.Line;
 import source.svg.dao.pojo.statements.SVGStatement;
+import source.svg.dao.pojo.statements.Text;
 
 /**
  *
@@ -22,6 +23,8 @@ public class GraphicManager {
     ArrayList<SVGStatement> statements;
 
     private Grid xyGrid;
+    
+    private boolean graphicGrid = true;
     
     private double x;
     private double y;
@@ -61,13 +64,18 @@ public class GraphicManager {
             if (statement.getType().equalsIgnoreCase("line")) {
                 printLane((Line)statement);
             }
+            if (statement.getType().equalsIgnoreCase("text")) {
+                printText((Text)statement);
+            }
         }
         
-        addLane(new Line(xOffSet, 0, x+xOffSet, 0, Color.BLACK, 2));
-        addLane(new Line(0, yOffSet, 0, y+yOffSet, Color.BLACK, 2));
-        
-        xyGrid = new Grid(0,0, svgManager.getWidth(), svgManager.getHeight(), (int)this.x, (int)this.y, Color.GRAY, 1);
-        svgManager.addGrid(xyGrid);
+        if (graphicGrid) {
+            addLane(new Line(xOffSet, 0, x+xOffSet, 0, Color.BLACK, 2));
+            addLane(new Line(0, yOffSet, 0, y+yOffSet, Color.BLACK, 2));
+
+            xyGrid = new Grid(0,0, svgManager.getWidth(), svgManager.getHeight(), (int)this.x, (int)this.y, Color.GRAY, 1);
+            svgManager.addGrid(xyGrid);
+        }
     }
     
     private double convertX(double x){
@@ -96,6 +104,25 @@ public class GraphicManager {
                 convertY(line.getY2()), 
                 line.getColor(), line.getStrokeWidth())
         );
+    }
+    
+    public void addLane(Text text){
+        statements.add(text);
+        printText(text);
+    }
+    
+    private void printText(Text text){
+        svgManager.addText(new Text(
+
+            )
+        );
+//        svgManager.addLine(new Line(
+//                convertX(line.getX1()), 
+//                convertY(line.getY1()), 
+//                convertX(line.getX2()), 
+//                convertY(line.getY2()), 
+//                line.getColor(), line.getStrokeWidth())
+//        );
     }
 
     public double getX() {
@@ -137,5 +164,8 @@ public class GraphicManager {
     public SVGManager getSvgManager() {
         return svgManager;
     }
-    
+
+    public void setGraphicGrid(boolean graphicGrid) {
+        this.graphicGrid = graphicGrid;
+    }
 }
