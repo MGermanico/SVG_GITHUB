@@ -78,10 +78,16 @@ public class TablePanel extends JPanel {
 
     private void initGrids() {
         for (Jugador jugador : gameTable.keySet()) {
-            namesGrid.add(new JLabel(jugador.getName()));
+            JLabel label = new JLabel(jugador.getName());
+            label.setForeground(jugador.getColor());
+            namesGrid.add(label);
             grid.initGrid(jugador);
 
         }
+    }
+    
+    public void updateSize(){
+        grid.updateSize();
     }
 
     private void updateGrid() {

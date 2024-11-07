@@ -51,6 +51,8 @@ public class DutchWindow extends JPanel {
         initBack();
 
         this.setVisible(true);
+        
+        this.updateGP();
     }
 
     private void initComponents() {
@@ -76,11 +78,14 @@ public class DutchWindow extends JPanel {
         JScrollPane scrollPane = new JScrollPane(tp, 
                                                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                                                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setPreferredSize(new Dimension(tp.getPreferredSize().width, 150));
+        scrollPane.setPreferredSize(new Dimension(tp.getPreferredSize().width, tableManager.getHeightTP()));
         leftSide.add(scrollPane);
         
         back.add(leftSide);
         rightSide.add(controlPanelManager.getCp());
+        
+        back.add(Box.createHorizontalGlue());
+        
         back.add(rightSide);
         this.add(back);
     }
@@ -131,7 +136,7 @@ public class DutchWindow extends JPanel {
         JScrollPane scrollPane = new JScrollPane(tp, 
                                                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                                                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setPreferredSize(new Dimension(tp.getPreferredSize().width, 150));
+        scrollPane.setPreferredSize(new Dimension(tp.getPreferredSize().width, tableManager.getHeightTP()));
         leftSide.add(scrollPane);
         
         back.add(leftSide);

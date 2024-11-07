@@ -46,9 +46,9 @@ public class PrincipalFrame extends JFrame implements Runnable{
         
         ArrayList<Jugador> players = new ArrayList<>();
         try {
-            players.add(new Jugador(new Nickname("ElPetaCulos"), Color.BLUE));
-            players.add(new Jugador(new Nickname("ElPetaCulos"), Color.RED));
-            players.add(new Jugador(new Nickname("ElPetaCulos"), Color.YELLOW));
+            players.add(new Jugador(new Nickname("ElPetaCulos1"), Color.BLUE));
+            players.add(new Jugador(new Nickname("ElPetaCulos2"), Color.RED));
+            players.add(new Jugador(new Nickname("ElPetaCulos3"), Color.YELLOW));
 //            players.add(new Jugador(new Nickname("ElPetaCulos"), Color.YELLOW));
 //            players.add(new Jugador(new Nickname("ElPetaCulos"), Color.YELLOW));
 //            players.add(new Jugador(new Nickname("ElPetaCulos"), Color.YELLOW));

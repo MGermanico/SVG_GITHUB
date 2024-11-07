@@ -4,6 +4,7 @@
  */
 package source.gui.table;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Map;
 import source.bbdd.dao.pojo.Jugador;
@@ -22,8 +23,19 @@ public class TableManager {
         this.parent = parent;
         this.tp = new TablePanel(nGames, this);
     }
+    
+    int height = 200;
+
+    public void setHeightTP(int height) {
+        this.height = height;
+    }
+    
+    public int getHeightTP(){
+        return height;
+    }
 
     public TablePanel getTP() {
+        tp.updateSize();
         return tp;
     }
 
@@ -71,10 +83,6 @@ public class TableManager {
 
     public int getActualRound() {
         return this.tp.grid.getnActualGames();
-    }
-
-    public TablePanel getTp() {
-        return tp;
     }
     
     

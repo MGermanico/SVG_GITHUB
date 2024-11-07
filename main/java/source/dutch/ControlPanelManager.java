@@ -49,4 +49,7 @@ public class ControlPanelManager {
         return parent.dutchManager.getY();
     }
     
+    public void update(){
+        this.parent.updateGP();
+    }
 }

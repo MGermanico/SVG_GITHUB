@@ -22,6 +22,8 @@ import source.utils.StringUtils;
  */
 public class ButtonGrid extends JPanel {
 
+    JPanel back;
+    
     JPanel grid;
     int nActualGames = 0;
     JScrollPane scrollPane;
@@ -34,12 +36,21 @@ public class ButtonGrid extends JPanel {
     }
 
     private void init() {
+        back = new JPanel();
         grid = new JPanel(new GridLayout(owner.gameTable.size(), owner.nGames));
         grid.setPreferredSize(new Dimension(owner.parent.parent.dutchManager.getWidth(), 100));
         scrollPane = new JScrollPane(grid, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(grid.getPreferredSize().width - 2, 50*this.owner.gameTable.size()));
-        this.add(scrollPane);
+        scrollPane.setPreferredSize(new Dimension(grid.getPreferredSize().width, 50*this.owner.gameTable.size()));
+        back.add(scrollPane);
+        this.add(back);
+    }
+    
+    public void updateSize(){
+        Dimension d = new Dimension(50*this.nActualGames, 50*this.owner.gameTable.size());
+        this.grid.setPreferredSize(d);
+        
+        scrollPane.setPreferredSize(new Dimension((int)(owner.parent.parent.dutchManager.getWidth()*0.7), grid.getPreferredSize().height - 2));
     }
 
     public void initGrid(Jugador jugador) {
@@ -81,9 +92,7 @@ public class ButtonGrid extends JPanel {
 
     public void addColumn() {
         incrementNActualGames();
-        Dimension d = new Dimension(50*this.nActualGames, 50*this.owner.gameTable.size());
-        this.grid.setPreferredSize(d);
-        this.setPreferredSize(new Dimension(400, grid.getPreferredSize().height - 2));
+        updateSize();
         updateGrid();
     }
 
